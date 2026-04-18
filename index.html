@@ -1,0 +1,164 @@
+<!DOCTYPE html><html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تبریک ویژه کهکشانی</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Tahoma, sans-serif;
+    }body {
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(ellipse at bottom, #090a1a 0%, #02030a 100%);
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.stars, .stars2, .nebula, .shooting-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.stars {
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+    radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(2px 2px at 130px 80px, #fff, transparent);
+  background-size: 200px 200px;
+  animation: moveStars 120s linear infinite;
+}
+
+.stars2 {
+  background-image:
+    radial-gradient(2px 2px at 50px 50px, #ffd6ff, transparent),
+    radial-gradient(1px 1px at 100px 150px, #9bf6ff, transparent),
+    radial-gradient(2px 2px at 150px 100px, #caffbf, transparent);
+  background-size: 300px 300px;
+  animation: moveStars 180s linear infinite;
+  opacity: 0.7;
+}
+
+.nebula {
+  background: radial-gradient(circle at 30% 40%, rgba(128,0,255,0.25), transparent 40%),
+              radial-gradient(circle at 70% 60%, rgba(0,150,255,0.18), transparent 45%),
+              radial-gradient(circle at 50% 50%, rgba(255,0,150,0.12), transparent 50%);
+  animation: pulseNebula 10s ease-in-out infinite;
+}
+
+.shooting-stars::before,
+.shooting-stars::after {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(90deg, white, transparent);
+  opacity: 0;
+  transform: rotate(-35deg);
+  animation: shooting 6s linear infinite;
+}
+
+.shooting-stars::after {
+  top: 30%;
+  left: 60%;
+  animation-delay: 3s;
+}
+
+.shooting-stars::before {
+  top: 10%;
+  left: 20%;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  max-width: 850px;
+  padding: 45px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 25px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 0 45px rgba(180,120,255,0.15);
+}
+
+#typed-text {
+  font-size: 1.7rem;
+  color: #ffffff;
+  line-height: 2.3;
+  white-space: pre-line;
+  display: inline-block;
+  min-height: 250px;
+  text-shadow: 0 0 12px rgba(255,255,255,0.35), 0 0 20px rgba(180,120,255,0.25);
+}
+
+.cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.6rem;
+  background: #fff;
+  margin-right: 4px;
+  animation: blink 0.8s infinite;
+  vertical-align: bottom;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@keyframes moveStars {
+  from { transform: translateY(0); }
+  to { transform: translateY(-300px); }
+}
+
+@keyframes pulseNebula {
+  0%,100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.08); }
+}
+
+@keyframes shooting {
+  0% { opacity: 0; transform: translate(0,0) rotate(-35deg); }
+  10% { opacity: 1; }
+  30% { opacity: 0; transform: translate(-400px,250px) rotate(-35deg); }
+  100% { opacity: 0; }
+}
+
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="stars2"></div>
+  <div class="nebula"></div>
+  <div class="shooting-stars"></div>  <div class="content">
+    <div id="typed-text"></div><span class="cursor"></span>
+  </div>  <script>
+    const text = `عرضی ندارم بانو
+فقط یادت باشد امروز که دختری
+در آینده مادر دختر دیگری هستی
+و روزی می‌آید که مادر بزرگ می‌شوی
+پس جدا از همه ناپاکی‌ها، تو پاک بمان!`;
+
+    let index = 0;
+    const speed = 60;
+    const typedText = document.getElementById('typed-text');
+
+    function typeWriter() {
+      if (index < text.length) {
+        typedText.innerHTML += text.charAt(index) === '\n' ? '<br>' : text.charAt(index);
+        index++;
+        setTimeout(typeWriter, speed);
+      }
+    }
+
+    window.onload = typeWriter;
+  </script></body>
+</html>
