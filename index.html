@@ -3,30 +3,32 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>تبریک ویژه کهکشانی</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Tahoma, sans-serif;
+      font-family: 'Vazirmatn', Tahoma, sans-serif;
     }body {
   overflow: hidden;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: radial-gradient(ellipse at bottom, #090a1a 0%, #02030a 100%);
+  background: radial-gradient(ellipse at bottom, #060816 0%, #02030a 100%);
   color: white;
   text-align: center;
   padding: 20px;
 }
 
-.stars, .stars2, .nebula, .shooting-stars {
+.stars, .stars2, .stars3, .nebula {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  pointer-events: none;
 }
 
 .stars {
@@ -34,71 +36,62 @@
     radial-gradient(2px 2px at 20px 30px, #fff, transparent),
     radial-gradient(2px 2px at 40px 70px, #fff, transparent),
     radial-gradient(1px 1px at 90px 40px, #fff, transparent),
-    radial-gradient(2px 2px at 130px 80px, #fff, transparent);
-  background-size: 200px 200px;
-  animation: moveStars 120s linear infinite;
+    radial-gradient(2px 2px at 130px 80px, #fff, transparent),
+    radial-gradient(2px 2px at 160px 120px, #fff, transparent);
+  background-size: 220px 220px;
+  animation: moveStars 140s linear infinite;
 }
 
 .stars2 {
   background-image:
     radial-gradient(2px 2px at 50px 50px, #ffd6ff, transparent),
-    radial-gradient(1px 1px at 100px 150px, #9bf6ff, transparent),
-    radial-gradient(2px 2px at 150px 100px, #caffbf, transparent);
-  background-size: 300px 300px;
-  animation: moveStars 180s linear infinite;
-  opacity: 0.7;
+    radial-gradient(2px 2px at 150px 100px, #9bf6ff, transparent),
+    radial-gradient(2px 2px at 100px 160px, #caffbf, transparent),
+    radial-gradient(2px 2px at 180px 40px, #ffffff, transparent);
+  background-size: 320px 320px;
+  animation: moveStars 200s linear infinite;
+  opacity: 0.8;
+}
+
+.stars3 {
+  background-image:
+    radial-gradient(3px 3px at 80px 100px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(3px 3px at 200px 180px, rgba(255,255,255,0.7), transparent);
+  background-size: 400px 400px;
+  animation: twinkle 4s ease-in-out infinite alternate;
 }
 
 .nebula {
-  background: radial-gradient(circle at 30% 40%, rgba(128,0,255,0.25), transparent 40%),
-              radial-gradient(circle at 70% 60%, rgba(0,150,255,0.18), transparent 45%),
-              radial-gradient(circle at 50% 50%, rgba(255,0,150,0.12), transparent 50%);
+  background:
+    radial-gradient(circle at 25% 35%, rgba(128,0,255,0.22), transparent 35%),
+    radial-gradient(circle at 75% 60%, rgba(0,180,255,0.18), transparent 40%),
+    radial-gradient(circle at 50% 50%, rgba(255,0,140,0.12), transparent 45%);
   animation: pulseNebula 10s ease-in-out infinite;
-}
-
-.shooting-stars::before,
-.shooting-stars::after {
-  content: "";
-  position: absolute;
-  width: 150px;
-  height: 2px;
-  background: linear-gradient(90deg, white, transparent);
-  opacity: 0;
-  transform: rotate(-35deg);
-  animation: shooting 6s linear infinite;
-}
-
-.shooting-stars::after {
-  top: 30%;
-  left: 60%;
-  animation-delay: 3s;
-}
-
-.shooting-stars::before {
-  top: 10%;
-  left: 20%;
 }
 
 .content {
   position: relative;
   z-index: 10;
+  width: 90%;
   max-width: 850px;
+  min-height: 280px;
   padding: 45px;
   background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.14);
   border-radius: 25px;
   backdrop-filter: blur(14px);
   box-shadow: 0 0 45px rgba(180,120,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #typed-text {
   font-size: 1.7rem;
-  color: #ffffff;
+  color: #f8f4ff;
   line-height: 2.3;
   white-space: pre-line;
-  display: inline-block;
-  min-height: 250px;
-  text-shadow: 0 0 12px rgba(255,255,255,0.35), 0 0 20px rgba(180,120,255,0.25);
+  text-shadow: 0 0 10px rgba(255,255,255,0.25), 0 0 18px rgba(220,200,255,0.18);
 }
 
 .cursor {
@@ -111,6 +104,23 @@
   vertical-align: bottom;
 }
 
+.signature {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(255,255,255,0.15);
+  z-index: 20;
+}
+
+.signature span {
+  color: #d8b4fe;
+  font-weight: bold;
+}
+
 @keyframes blink {
   50% { opacity: 0; }
 }
@@ -120,16 +130,14 @@
   to { transform: translateY(-300px); }
 }
 
-@keyframes pulseNebula {
-  0%,100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 0.9; transform: scale(1.08); }
+@keyframes twinkle {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
 }
 
-@keyframes shooting {
-  0% { opacity: 0; transform: translate(0,0) rotate(-35deg); }
-  10% { opacity: 1; }
-  30% { opacity: 0; transform: translate(-400px,250px) rotate(-35deg); }
-  100% { opacity: 0; }
+@keyframes pulseNebula {
+  0%,100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.9; transform: scale(1.05); }
 }
 
   </style>
@@ -137,18 +145,18 @@
 <body>
   <div class="stars"></div>
   <div class="stars2"></div>
-  <div class="nebula"></div>
-  <div class="shooting-stars"></div>  <div class="content">
-    <div id="typed-text"></div><span class="cursor"></span>
-  </div>  <script>
+  <div class="stars3"></div>
+  <div class="nebula"></div>  <div class="content">
+    <div><span id="typed-text"></span><span class="cursor"></span></div>
+  </div>  <div class="signature">ساخته شده توسط <span>SaLeNcE</span></div>  <script>
     const text = `عرضی ندارم بانو
 فقط یادت باشد امروز که دختری
 در آینده مادر دختر دیگری هستی
-و روزی می‌آید که مادر بزرگ می‌شوی
-پس جدا از همه ناپاکی‌ها، تو پاک بمان!`;
+و روزی می‌آید که مادری بزرگ می‌شوی
+پس جدا از همه ناپاکی‌ها، تو پاک بمان🤍✨`;
 
     let index = 0;
-    const speed = 60;
+    const speed = 55;
     const typedText = document.getElementById('typed-text');
 
     function typeWriter() {
@@ -160,8 +168,5 @@
     }
 
     window.onload = typeWriter;
-  </script>  <div style="position: absolute; bottom: 15px; width: 100%; text-align: center; font-size: 14px; color: rgba(255,255,255,0.65); letter-spacing: 1px; text-shadow: 0 0 8px rgba(255,255,255,0.15); z-index: 20;">
-    ساخته شده توسط <span style="color:#d8b4fe; font-weight:bold;">SaLeNcE</span>
-  </div>
-</body>
+  </script></body>
 </html>
